@@ -35,11 +35,11 @@ public abstract class PaginatedRequest<R, P extends RequestParameter> {
 
             Response response = httpClient.newCall(request).execute();
             R current = null;
-            try (ResponseBody responseBody = response.body()){
+            try (ResponseBody responseBody = response.body()) {
             	System.err.println(new String(responseBody.bytes(), "UTF-8"));
                 current = mapResponse(responseBody.byteStream());
             } catch (IllegalArgumentException e) {
-            	System.err.println("EXCEPTION !!!!");
+            	System.err.println("!!! EXCEPTION !!!!");
             	System.err.println(request);
             	System.err.println(response);
             	for (String header : response.headers().names()) {
