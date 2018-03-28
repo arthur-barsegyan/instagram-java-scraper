@@ -43,7 +43,7 @@ public abstract class PaginatedRequest<R, P extends RequestParameter> {
             	System.err.println(request);
             	System.err.println(response);
             	for (String header : response.headers().names()) {
-            		System.err.println(header);
+            		System.err.println(header + " " + response.header(header));
             	}
             }
 
