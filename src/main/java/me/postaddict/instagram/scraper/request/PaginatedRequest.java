@@ -36,7 +36,7 @@ public abstract class PaginatedRequest<R, P extends RequestParameter> {
             Response response = httpClient.newCall(request).execute();
             R current = null;
             try (ResponseBody responseBody = response.body()){
-            	System.err.println(responseBody);
+            	System.err.println(new String(responseBody.bytes(), "UTF-8"));
                 current = mapResponse(responseBody.byteStream());
             } catch (IllegalArgumentException e) {
             	System.err.println("EXCEPTION !!!!");
