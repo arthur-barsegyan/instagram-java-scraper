@@ -34,10 +34,16 @@ public abstract class PaginatedRequest<R, P extends RequestParameter> {
             Request request = requestInstagram(requestParameters, pageCursor);
 
             Response response = httpClient.newCall(request).execute();
-            R current;
+            R current = null;
             try (ResponseBody responseBody = response.body()){
+            	System.err.println(responseBody);
                 current = mapResponse(responseBody.byteStream());
+            } catch (IllegalArgumentException e) {
+            	System.err.println("EXCEPTION !!!!");
+            	System.err.println(request);
+            	System.err.println(response);
             }
+
             if(delayHandler!=null) {
                 delayHandler.onEachRequest();
             }
