@@ -42,6 +42,9 @@ public abstract class PaginatedRequest<R, P extends RequestParameter> {
             	System.err.println("EXCEPTION !!!!");
             	System.err.println(request);
             	System.err.println(response);
+            	for (String header : response.headers().names()) {
+            		System.err.println(header);
+            	}
             }
 
             if(delayHandler!=null) {
